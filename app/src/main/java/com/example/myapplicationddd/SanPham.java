@@ -7,8 +7,8 @@ public class SanPham {
     private int hinh;
 
     public SanPham(String tenSp, int soLuong, int giaSP, int hinh) {
-        TenSp = tenSp;
-        SoLuong = soLuong;
+        this.TenSp = tenSp;
+        this.SoLuong = soLuong;
         this.giaSP = giaSP;
         this.hinh = hinh;
     }

@@ -29,18 +29,21 @@ public class AdapterSanPham extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return arraylist.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        convertView = inflater.inflate(layout, null);
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(context);
+            convertView = inflater.inflate(layout, parent, false);
+        }
+
         SanPham sanPham = arraylist.get(position);
         TextView textView = convertView.findViewById(R.id.name);
         TextView textView1 = convertView.findViewById(R.id.gia);
@@ -48,8 +51,8 @@ public class AdapterSanPham extends BaseAdapter {
         ImageView imageView = convertView.findViewById(R.id.image4);
 
         textView.setText(sanPham.getTenSp());
-        textView1.setText(sanPham.getGiaSP());
-        textView2.setText(sanPham.getSoLuong());
+        textView1.setText(String.valueOf(sanPham.getGiaSP()));
+        textView2.setText(String.valueOf(sanPham.getSoLuong()));
         imageView.setImageResource(sanPham.getHinh());
 
         return convertView;
