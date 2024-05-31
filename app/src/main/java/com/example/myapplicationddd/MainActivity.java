@@ -1,45 +1,58 @@
 package com.example.myapplicationddd;
 
+import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.Adapter;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.SQLDataException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-
+    TextView txttieude;
+    Button btnisert;
+    EditText edttensp,edtsl,edtgia;
+    DataBaseManager dbManager;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnisert = findViewById(R.id.btninsert);
+        ListView lv = findViewById(R.id.lv);
+        edttensp = findViewById(R.id.edttensp);
+        edtsl = findViewById(R.id.edtsl);
+        edtgia = findViewById(R.id.edtgia);
 
-        ListView lv = findViewById(R.id.lv);;
-        TextView txttest = findViewById(R.id.txttest);;
-
+        txttieude = findViewById(R.id.txttieude);
+        dbManager = new DataBaseManager(this);
 
         ArrayList<SanPham> arrayList = new ArrayList<SanPham>();
-        arrayList.add(new SanPham("bun", 20, 15000, R.drawable.bun));
-        arrayList.add(new SanPham("bun1", 10, 35000, R.drawable.bun));
-        arrayList.add(new SanPham("bun2", 5, 55000, R.drawable.bun));
-        arrayList.add(new SanPham("bun3", 2, 85000, R.drawable.bun));
-        arrayList.add(new SanPham("bun4", 1, 99000, R.drawable.bun));
+        arrayList.add(new SanPham("bun", "20", "1500", R.drawable.bun));
+
 
         AdapterSanPham adapter = new AdapterSanPham(MainActivity.this, R.layout.sanpham, arrayList);
 
         try {
             lv.setAdapter(adapter);
         } catch (Exception ex) {
-            txttest.setText("Lỗi: " + ex.getMessage());
+            txttieude.setText("Lỗi: " + ex.getMessage());
         }
+    }
+
+    public void btnisert(View view) {
+        String tensp = edttensp.getText().toString();
+        String sl = edtsl.getText().toString();
+        String gia = edtgia.getText().toString();
+        String msg = "";
+        String tsp = new String(tensp);
+        String sls = new String(sl);
+        String g = new String(gia);
+        dbManager.insert(tsp,sls,g,R.drawable.bun);
     }
 }

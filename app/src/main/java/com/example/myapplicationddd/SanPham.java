@@ -2,13 +2,13 @@ package com.example.myapplicationddd;
 
 public class SanPham {
     private String TenSp;
-    private int SoLuong;
-    private int giaSP;
+    private String SoLuong;
+    private String giaSP;
     private int hinh;
 
-    public SanPham(String tenSp, int soLuong, int giaSP, int hinh) {
-        this.TenSp = tenSp;
-        this.SoLuong = soLuong;
+    public SanPham(String tenSp, String soLuong, String giaSP, int hinh) {
+        TenSp = tenSp;
+        SoLuong = soLuong;
         this.giaSP = giaSP;
         this.hinh = hinh;
     }
@@ -21,19 +21,19 @@ public class SanPham {
         TenSp = tenSp;
     }
 
-    public int getSoLuong() {
+    public String getSoLuong() {
         return SoLuong;
     }
 
-    public void setSoLuong(int soLuong) {
+    public void setSoLuong(String soLuong) {
         SoLuong = soLuong;
     }
 
-    public int getGiaSP() {
+    public String getGiaSP() {
         return giaSP;
     }
 
-    public void setGiaSP(int giaSP) {
+    public void setGiaSP(String giaSP) {
         this.giaSP = giaSP;
     }
 
